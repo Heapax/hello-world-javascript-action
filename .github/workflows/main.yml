@@ -1,0 +1,22 @@
+on:
+    push:
+        branches:
+          - main
+    workflow_dispatch:
+
+jobs:
+  hello_world_job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Run the Hello World Action
+        id: hello
+        uses: ./
+        with:
+          who-to-greet: 'Shon the Megalodon'
+
+      - name: Get the output time
+        run: echo "The time was ${{ steps.hello.outputs.time }}"
